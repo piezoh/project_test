@@ -15,14 +15,13 @@ def index():
 def get_text():
     # フォームから入力されたテキストを取得
     input_text = request.form["input_text"]
-
     filename = request.form["filename"]
 
-    # 取得したテキストを表示（ここではコンソールに出力しますが、実際のアプリケーションでは何か他の処理を行うことが一般的です）
-    # print(f"入力されたテキスト: {input_text}")
+    # Word文書を生成して保存
+    generate_docx(filename, input_text)
 
     # 応答メッセージを返す
-    return filename, input_text
+    return f"ファイル '{filename}.docx' が保存されました。"
 
 
 def slice_txt_into_list(full_txt, slice_length):
@@ -34,14 +33,7 @@ def slice_txt_into_list(full_txt, slice_length):
     return sliced_list
 
 
-def generate_docx():
-    input_data = get_text()
-
-    new_filename = input_data[0]
-
-    full_txt = input_data[1]
-
-    # full_txt = input("起案内容を入力:")
+def generate_docx(new_filename, full_txt):
     # 40字ごとに区切ってリストに入れる
     draft_content = slice_txt_into_list(full_txt, 40)
 
