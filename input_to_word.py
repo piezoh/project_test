@@ -1,4 +1,3 @@
-import os
 from docx import Document
 from flask import Flask, request, render_template
 
@@ -24,11 +23,18 @@ def get_text():
     return f"ファイル '{filename}.docx' が保存されました。"
 
 
+# 全文を改行及び文字数で区切ってリストに入れる
 def slice_txt_into_list(full_txt, slice_length):
     sliced_list = []
+    lines = full_txt.split("\n")  # 改行でテキストを分割
 
-    for i in range(0, len(full_txt), slice_length):
-        sliced_list.append(full_txt[i : i + slice_length])
+    for line in lines:
+        while len(line) > slice_length:
+            sliced_list.append(line[:slice_length])
+            line = line[slice_length:]
+
+        if line:
+            sliced_list.append(line)
 
     return sliced_list
 
