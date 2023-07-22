@@ -1,23 +1,92 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>テキスト入力フォーム</title>
     <style>
-    textarea{
-        font-size: 150%;
-        resize:none;
-    }
+        input {
+            font-size: 100%;
+            height: 1.8em;
+        }
+
+        input:focus {
+            outline: 0;
+            box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+        }
+
+        textarea {
+            font-size: 150%;
+            resize: none;
+            vertical-align: top;
+        }
+
+        textarea:focus {
+            outline: 0;
+            box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+        }
+
+        #draft_date {
+            font-size: 100%;
+        }
+
+        #summary {
+            font-size: 120%;
+        }
+
+        select {
+            font-size: 110%;
+        }
+
+        label {
+            display: inline-block;
+            text-align: right;
+            width: 200px;
+        }
     </style>
 </head>
+
 <body>
+    <center>
+        <h2>起案サポートシステム</h2>
+    </center>
     <form action="/get_text" method="post">
-        <label for="input_text">テキスト入力:</label>
+        <label for="doc_number">文書番号:</label>
+        <input type="text" id="doc_number" name="doc_number">
+        <br>
+        <br>
+        <label for="doc_date">文書の日付:</label>
+        <input type="text" id="doc_date" name="doc_date">
+        <br>
+        <br>
+        <label for="draft_date">起案日 :</label>
+        <input type="text" id="draft_date" name="draft_date">
+        <br>
+        <br>
+        <label for="drafter">起案者 :</label>
+        <input type="text" id="drafter" name="drafter" style="width: 400px;">
+        <br>
+        <br>
+        <div>
+            <label for="authorizere">最終決済者</label>
+            <select name="authorizere">
+                <option value="町長">町長</option>
+                <option value="副町長">副町長まで</option>
+                <option value="課長">課長まで</option>
+            </select>
+        </div>
+        <br>
+        <label for="summary">摘要 :</label>
+        <textarea id="summary" name="summary" rows="2" cols="40"></textarea>
+        <br>
+        <br>
+        <label for="input_text">本文入力 :</label>
         <textarea id="input_text" name="input_text" rows="14" cols="78"></textarea>
         <br>
-        <label for="filename">ファイル名:</label>
-        <input type="text" id="filename" name="filename">
         <br>
-        <input type="submit" value="送信">
+        <center><input type="submit" value="Wordテンプレートに出力"></center>
+        <br>
+        <br>
     </form>
 </body>
+
 </html>
